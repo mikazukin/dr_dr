@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useReducer } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 // api
 import { fetchTasks } from '../apis/tasks';
 // constants
@@ -37,6 +38,11 @@ const CustomSkeleton = styled(Skeleton)`
   margin-bottom: 10px;
 `
 
+const TaskLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`
+
 const TasksContentsWrapper = styled.div`
   width: 90%;
   padding: 10px;
@@ -60,7 +66,9 @@ export const Tasks = () => {
     .then((data) =>
       dispatch({type: tasksActionTypes.FETCH_SUCCESS,
                 payload: {
-                  tasks: data.tasks
+                  begin_tasks: data.begin_tasks,
+                  doing_tasks: data.doing_tasks,
+                  end_tasks: data.end_tasks
                 }
       })
     )
@@ -80,11 +88,13 @@ export const Tasks = () => {
             <CustomSkeleton variant="rect" height={100} />
           </Fragment>
         :
-          state.tasksList.map( task =>
-            <TasksContentsWrapper key={task.id}>
-              <TaskTitle>{task.name}</TaskTitle>
-              作成日：{task.created_at}
-            </TasksContentsWrapper>
+          state.beginTasksList.map( task =>
+            <TaskLink to={`/tasks/${task.id}`} key={task.id}>
+              <TasksContentsWrapper key={task.id}>
+                <TaskTitle>{task.name}</TaskTitle>
+                作成日：{task.created_at}
+              </TasksContentsWrapper>
+            </TaskLink>
           )
       }
       </TasksContentsList>
@@ -98,11 +108,13 @@ export const Tasks = () => {
             <CustomSkeleton variant="rect" height={100} />
           </Fragment>
         :
-          state.tasksList.map( task =>
-            <TasksContentsWrapper key={task.id}>
-              <TaskTitle>{task.name}</TaskTitle>
-              作成日：{task.created_at}
-            </TasksContentsWrapper>
+          state.doingTasksList.map( task =>
+            <TaskLink to={`/tasks/${task.id}`} key={task.id}>
+              <TasksContentsWrapper key={task.id}>
+                <TaskTitle>{task.name}</TaskTitle>
+                作成日：{task.created_at}
+              </TasksContentsWrapper>
+            </TaskLink>
           )
       }
       </TasksContentsList>
@@ -116,11 +128,13 @@ export const Tasks = () => {
             <CustomSkeleton variant="rect" height={100} />
           </Fragment>
         :
-          state.tasksList.map( task =>
-            <TasksContentsWrapper key={task.id}>
-              <TaskTitle>{task.name}</TaskTitle>
-              作成日：{task.created_at}
-            </TasksContentsWrapper>
+          state.endTasksList.map( task =>
+            <TaskLink to={`/tasks/${task.id}`} key={task.id}>
+              <TasksContentsWrapper>
+                <TaskTitle>{task.name}</TaskTitle>
+                作成日：{task.created_at}
+              </TasksContentsWrapper>
+            </TaskLink>
           )
       }
       </TasksContentsList>
