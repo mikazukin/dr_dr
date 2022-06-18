@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+10.times do |n|
+  doing_task = Task.new(
+    name: "doing_task_#{n}",
+    description: "doing_description_#{n}",
+    status: "doing",
+  )
+  doing_task.save!
+end
+10.times do |n|
+  end_task = Task.new(
+    name: "end_task_#{n}",
+    description: "end_description_#{n}",
+    status: "end",
+  )
+  end_task.save!
+end
