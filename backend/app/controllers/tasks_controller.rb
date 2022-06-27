@@ -9,4 +9,9 @@ class TasksController < ApplicationController
                  end_tasks: end_tasks
                  }
   end
+
+  def show
+    task = Task.find(params[:id])
+    render json: {task: task}
+  end
 end

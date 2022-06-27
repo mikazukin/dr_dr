@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 //components
 import { Tasks } from './containers/Tasks.jsx';
+import { TaskShow } from './containers/TaskShow.jsx';
 
 function App() {
   return (
@@ -17,6 +18,13 @@ function App() {
           path="/tasks">
           <Tasks />
         </Route>
+        <Route
+          exact
+          path="/tasks/:id/show"
+          render={({match}) =>
+            <TaskShow match={match} />
+          }
+        />
       </Switch>
     </BrowserRouter>
   );

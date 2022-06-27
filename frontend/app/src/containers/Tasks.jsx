@@ -89,7 +89,7 @@ export const Tasks = () => {
           </Fragment>
         :
           state.beginTasksList.map( task =>
-            <TaskLink to={`/tasks/${task.id}`} key={task.id}>
+            <TaskLink to={`/tasks/${task.id}/show`} key={task.id}>
               <TasksContentsWrapper key={task.id}>
                 <TaskTitle>{task.name}</TaskTitle>
                 作成日：{task.created_at}
@@ -109,7 +109,7 @@ export const Tasks = () => {
           </Fragment>
         :
           state.doingTasksList.map( task =>
-            <TaskLink to={`/tasks/${task.id}`} key={task.id}>
+            <TaskLink to={`/tasks/${task.id}/show`} key={task.id}>
               <TasksContentsWrapper key={task.id}>
                 <TaskTitle>{task.name}</TaskTitle>
                 作成日：{task.created_at}
@@ -129,7 +129,7 @@ export const Tasks = () => {
           </Fragment>
         :
           state.endTasksList.map( task =>
-            <TaskLink to={`/tasks/${task.id}`} key={task.id}>
+            <TaskLink to={`/tasks/${task.id}/show`} key={task.id}>
               <TasksContentsWrapper>
                 <TaskTitle>{task.name}</TaskTitle>
                 作成日：{task.created_at}
